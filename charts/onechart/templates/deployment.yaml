@@ -11,12 +11,21 @@ metadata:
     gimlet.io/git-sha: {{ .Values.gitSha }}
     {{- end }}
 spec:
+  {{- if .Values.schedulerName }}
+  schedulerName: alter-scheduler
+  {{- end }}
+  {{- if .Values.terminationGracePeriodSeconds }}
+  terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+  {{- end }}
   {{- if .Values.replicas }}
   replicas: {{ .Values.replicas }}
   {{- end }}
   selector:
     matchLabels:
       {{- include "helm-chart.selectorLabels" . | nindent 6 }}
+      {{- with .Values.selector.matchLabels }}
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
   {{- $singleReplica := eq (.Values.replicas | int64) 1 }}
   {{- $strategyNotDefined := not .Values.strategy }}
   {{- if and (and .Values.volumes $singleReplica) $strategyNotDefined}}
