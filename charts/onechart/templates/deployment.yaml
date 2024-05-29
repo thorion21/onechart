@@ -11,12 +11,6 @@ metadata:
     gimlet.io/git-sha: {{ .Values.gitSha }}
     {{- end }}
 spec:
-  {{- if .Values.schedulerName }}
-  schedulerName: {{ .Values.schedulerName }}
-  {{- end }}
-  {{- if .Values.terminationGracePeriodSeconds }}
-  terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
-  {{- end }}
   {{- if .Values.replicas }}
   replicas: {{ .Values.replicas }}
   {{- end }}
