@@ -437,10 +437,7 @@
               "memory": "200mi"
             }
           ],
-          "required": [
-            "cpu",
-            "memory"
-          ],
+          "required": [],
           "properties": {
             "cpu": {
               "$id": "#/properties/resources/properties/limits/properties/cpu",
